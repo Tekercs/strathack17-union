@@ -20,3 +20,9 @@ Route::post("/", "IndexController@postedMessage");
 Route::get("/register", "IndexController@register");
 
 Route::post("/register", "IndexController@registerPost");
+
+Route::get("/login", "IndexController@login");
+Route::post("/login", "IndexController@loginPost");
+
+Route::get("/account", "IndexController@account");
+Route::post("/account", "IndexController@accountPost");

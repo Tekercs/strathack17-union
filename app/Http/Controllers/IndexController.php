@@ -12,6 +12,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
@@ -23,21 +24,43 @@ class IndexController extends Controller
 
     public function register()
     {
+        if (Auth::check()) {
+            return redirect('account');
+        }
         return view("register");
     }
 
     public function login()
     {
+        if (Auth::check()) {
+            return redirect('account');
+        }
         return view("login");
     }
+    public function account()
+    {
+        if (Auth::check()) {
+            $user = Auth::user();
 
+            return view("account", ["user" => $user]);
+        }else{
+            return redirect('account');
+        }
+    }
+
+    public function accountPost(Request $request){
+        $user = Auth::user();
+
+        return view("account", ["user" => $user]);
+
+    }
     public function registerPost(Request $request){
         $user = new User();
-        $user->message = $request->input("name");
-        $user->message = $request->input("email");
+        $user->name = $request->input("name");
+        $user->email = $request->input("email");
         $user->password =  Hash::make($request->input("password"));
+        $user->isSociety = false;
         #$user->cpassword =  Hash::make($request->input("cpassword"));
-
 
         $viewData = new \stdClass();
         if ($request->input("cpassword") == $request->input("password")){
@@ -54,15 +77,18 @@ class IndexController extends Controller
     }
 
     public function loginPost(Request $request){
-        $user = new User();
-        $user->email = $request->input("email");
-        $user->password =  Hash::make($request->input("password"));
+
+        if (Auth::attempt(['email' => $request->input("email"), 'password' => $request->input("password")])) {
+            // Authentication passed...
+            return redirect('/');
+        }else{
+            $viewData = new \stdClass();
+            $viewData->message = 'Login Unsuccessful';
+
+            return view("login", ['viewData' => $viewData]);
+        }
 
 
-        $viewData = new \stdClass();
-        $viewData->message = 'successful';
-
-        return view("result", ['viewData' => $viewData]);
     }
 
     public function postedMessage(Request $request)
