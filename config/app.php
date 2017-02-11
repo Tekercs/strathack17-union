@@ -103,7 +103,8 @@ return [
     |
     */
 
-    'key' => env('APP_KEY', 'retek'),
+    #'ikey' => env('APP_KEY', 'retek'),
+    'key' => '11111111111111111111111111111111',
 
     'cipher' => 'AES-256-CBC',
 

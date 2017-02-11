@@ -11,10 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get("/", "IndexController@index");
 
 Route::get("/index", "IndexController@index");
 
-Route::post("/index", "IndexController@postedMessage");
+Route::post("/", "IndexController@postedMessage");
+
+Route::get("/register", "IndexController@register");
+
+Route::post("/register", "IndexController@registerPost");
