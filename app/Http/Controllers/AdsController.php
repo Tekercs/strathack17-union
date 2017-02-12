@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 
 use App\Ads;
+use Illuminate\Http\Request;
 
 class AdsController extends Controller
 {
@@ -37,6 +38,26 @@ class AdsController extends Controller
         $viewData->prevPage = ($page-1 <0)? 0 : $page-1;
         $viewData->nextPage = $page+1;
         $viewData->ads = Ads::where("categoryId", $categoryId)->skip($page*9)->take(9)->get();
+
+        return view("ads.list", ['viewData' => $viewData]);
+    }
+
+    public function searchConverter(Request $request)
+    {
+        return redirect("/ads/search/" . str_replace(' ', '_', $request->input("searchKey")) );
+    }
+
+    public function search($key, $page = 0)
+    {
+        $key = str_replace('_', ' ', $key);
+
+        $viewData = new \stdClass();
+        $viewData->prevPage = ($page-1 <0)? 0 : $page-1;
+        $viewData->nextPage = $page+1;
+        $viewData->ads = Ads::search($key)
+            ->skip($page*9)
+            ->take(9)
+            ->get();
 
         return view("ads.list", ['viewData' => $viewData]);
     }

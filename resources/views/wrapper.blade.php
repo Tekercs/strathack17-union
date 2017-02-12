@@ -56,8 +56,10 @@
 
 
                 <li id="search">
-                    <form action="" method="get">
-                        <input type="text" name="search_text" id="search_text" placeholder="Search"/>
+                    <form action="/ads/search-help" method="post">
+                        <input type="text" name="searchKey" id="searchKey" placeholder="Search"/>
+
+                        {{csrf_field()}}
                     </form>
                 </li>
                 </li>

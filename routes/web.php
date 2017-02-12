@@ -35,4 +35,7 @@ Route::group(['prefix' => '/ads'], function ()
     Route::get("/list/{page?}", "AdsController@adList");
     Route::get("/category/{categoryId}/{page?}", "AdsController@categoryList");
 
+    Route::post("/search-help", "AdsController@searchConverter");
+    Route::get("/search/{key}/{page?}", "AdsController@search");
+
 });

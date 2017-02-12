@@ -10,4 +10,11 @@ class Ads extends Model
     {
         return $this->hasOne('App\Categories', 'id', 'categoryId');
     }
+
+    public function scopeSearch($query, $key)
+    {
+        return $query->where("title", "LIKE", "%".$key."%")
+                     ->orWhere("content", "LIKE", "%".$key."%")
+                     ->orWhere("breef", "LIKE" ,"%".$key."%");
+    }
 }
