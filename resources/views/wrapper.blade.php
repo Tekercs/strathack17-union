@@ -28,25 +28,16 @@
                 <li>
                     <a href="#">Browse category</a>
                     <ul>
-                        <li><a href="#">For Sale</a></li>
-                        <li>
-                            <a href="#">Jobs</a>
-                            <ul>
-                                <li><a href="#">Hospitality</a></li>
-                                <li><a href="#">Catering</a></li>
-                                <li><a href="#">etc</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">Accommodation</a>
-                            <ul>
-                                <li><a href="#">Looking for rent</a></li>
-                                <li><a href="#">Looking for a roommate</a></li>
-                            </ul>
-                        </li>
+                        @foreach($viewData->categories as $category)
+                            <li>
+                                <a href="/ads/category/{{$category->id}}">{{$category->name}}</a>
+                            </li>
+                        @endforeach
                     </ul>
 
                 <li><a href="post_ad.html">Post an ad</a></li>
+
+                @if($viewData->isLoggedIn)
                 <li>
                     <a href="#">Profile</a>
                     <ul>
@@ -54,7 +45,9 @@
                         <li><a href="#">Log out</a></li>
                     </ul>
                 </li>
-                <li><a href="log_in.html">Log in</a></li>
+                @elsif
+                <li><a href="/login">Log in</a></li>
+                @endif
 
 
                 <li id="search">
@@ -77,7 +70,7 @@
                             <a href="ad_view" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
                             <div class="inner">
                                 <header>
-                                    <h2><a href="/ad/{{$ad->id}}">{{$ad->title}}</a></h2>
+                                    <h2><a href="/ads/{{$ad->id}}">{{$ad->title}}</a></h2>
                                     <p>{{$ad->category->name}}</p>
                                 </header>
                                 <p>{{$ad->breef}}</p>

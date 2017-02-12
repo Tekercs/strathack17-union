@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 
 use App\Ads;
+use App\Categories;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -23,9 +24,14 @@ class IndexController extends Controller
         $viewData = new \stdClass();
         $viewData->adSelection = Ads::orderBy("created_at")->take(3)->get();
         $viewData->isIndex = true;
+        $viewData->isLoggedIn = Auth::check();
+        $viewData->categories = Categories::all();
+        if (Auth::check())
+        {
+            $viewData->user = Auth::user();
+        }
 
         return view("index", ['viewData' => $viewData]);
-        return view("comingsoon");
     }
 
     public function register()
@@ -112,5 +118,13 @@ class IndexController extends Controller
         }
 
 
+    }
+
+    public function viewAd($id)
+    {
+        $viewData = new \stdClass();
+        $viewData->ad = Ads::find($id);
+
+        return view("addetails", ['viewData' => $viewData]);
     }
 }

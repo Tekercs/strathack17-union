@@ -26,3 +26,6 @@ Route::post("/login", "IndexController@loginPost");
 
 Route::get("/account", "IndexController@account");
 Route::post("/account", "IndexController@accountPost");
+
+
+Route::get("/ad/{id}", "IndexController@viewAd");
