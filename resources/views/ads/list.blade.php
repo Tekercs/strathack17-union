@@ -8,7 +8,7 @@
                 @foreach($viewData->ads as $ad)
                     <div class="4u 12u(medium)">
                         <section class="box feature">
-                            <a href="ad_view" class="image featured"><img src="/images/pic01.jpg" alt="" /></a>
+                            <a href="/ads/{{$ad->id}}" class="image featured"><img src="/images/pic01.jpg" alt="" /></a>
                             <div class="inner">
                                 <header>
                                     <h2><a href="/ads/{{$ad->id}}">{{$ad->title}}</a></h2>
