@@ -41,14 +41,31 @@ class IndexController extends Controller
     {
         if (Auth::check()) {
             $user = Auth::user();
-
+            
             return view("account", ["user" => $user]);
         }else{
-            return redirect('account');
+            return redirect('login');
         }
     }
 
     public function accountPost(Request $request){
+        if (Auth::check()) {
+            $user = Auth::user();
+            $viewData = new \stdClass();
+            if ($request->has("email")){
+                $user->email = $request->input("email");
+            }
+            if(($request->has("password"))){
+                if($request->input("password") == $request->input("cpassword")){
+                    $user->password = $request->input("password");
+                }else{
+                    $viewData->message = "Passwords do not match";
+                }
+            }
+            return view("account", ["user" => $user, 'viewData' => $viewData]);
+        }else{
+            return redirect('login');
+        }
         $user = Auth::user();
 
         return view("account", ["user" => $user]);
