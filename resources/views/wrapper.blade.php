@@ -132,16 +132,7 @@
             <footer id="footer" class="container">
                 <div class="row">
                     <div class="3u 6u(medium) 12u$(small)">
-
-                        <!-- Links -->
-                        <section class="widget links">
-                            <h3>Random Stuff</h3>
-                            <ul class="style2">
-                                <li><a href="#">Etiam feugiat condimentum</a></li>
-                                <li><a href="#">Aliquam imperdiet suscipit odio</a></li>
-                            </ul>
-                        </section>
-
+                        
                         <section class="widget contact last">
                             <h3>Contact Us</h3>
                             <ul>
