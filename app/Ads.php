@@ -8,6 +8,6 @@ class Ads extends Model
 {
     public function category()
     {
-        return $this->hasOne('App\Categories');
+        return $this->hasOne('App\Categories', 'id', 'categoryId');
     }
 }

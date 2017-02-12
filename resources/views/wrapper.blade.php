@@ -5,7 +5,7 @@
     <title>UNION index</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
 </head>
 <body class="homepage">
 <div id="page-wrapper">
@@ -16,7 +16,7 @@
 
             <!-- Logo -->
             <div id="logo">
-                <h1><a href="index.html"> <img src="/images/logo.png"> </a></h1>
+                <h1><a href="index"> <img src="/images/logo.png"> </a></h1>
                 <span>University of Strathclyde Students' Association</span>
             </div>
         </header>
@@ -67,58 +67,29 @@
         </nav>
 
         <!-- Features -->
+        @if(isset($viewData->isIndex) && $viewData->isIndex)
         <div id="features-wrapper">
+            <div class="container">
                 <div class="row">
+                @foreach($viewData->adSelection as $ad)
                     <div class="4u 12u(medium)">
-
-                        <!-- Box -->
                         <section class="box feature">
                             <a href="ad_view" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
                             <div class="inner">
                                 <header>
-                                    <h2>Title</h2>
-                                    <p>Category</p>
+                                    <h2><a href="/ad/{{$ad->id}}">{{$ad->title}}</a></h2>
+                                    <p>{{$ad->category->name}}</p>
                                 </header>
-                                <p>And here goes the description of the ad.</p>
+                                <p>{{$ad->breef}}</p>
                             </div>
                         </section>
-
                     </div>
-                    <div class="4u 12u(medium)">
-
-                        <!-- Box -->
-                        <section class="box feature">
-                            <a href="ad_view" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
-                            <div class="inner">
-                                <header>
-                                    <header>
-                                        <h2>Title</h2>
-                                        <p>Category</p>
-                                    </header>
-                                    <p>And here goes the description of the ad.</p>
-                            </div>
-                        </section>
-
-                    </div>
-                    <div class="4u 12u(medium)">
-
-                        <!-- Box -->
-                        <section class="box feature">
-                            <a href="ad_view" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
-                            <div class="inner">
-                                <header>
-                                    <header>
-                                        <h2>Title</h2>
-                                        <p>Category</p>
-                                    </header>
-                                    <p>And here goes the description of the ad.</p>
-                            </div>
-                        </section>
-
-                    </div>
-                </div>
+                @endforeach
+            </div>
             </div>
         </div>
+
+        @endif
 
 
         <!-- Main -->

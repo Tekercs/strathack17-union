@@ -9,13 +9,18 @@
 namespace App\Http\Controllers;
 
 
+use App\Ads;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
     public function index()
     {
-        return view("index");
+        $viewData = new \stdClass();
+        $viewData->adSelection = Ads::orderBy("created_at")->take(3)->get();
+        $viewData->isIndex = true;
+
+        return view("index", ['viewData' => $viewData]);
     }
 
     public function postedMessage(Request $request)
