@@ -38,7 +38,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => env('APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -103,7 +103,8 @@ return [
     |
     */
 
-    'key' => env('APP_KEY'),
+    #'ikey' => env('APP_KEY', 'retek'),
+    'key' => '11111111111111111111111111111111',
 
     'cipher' => 'AES-256-CBC',
 
