@@ -100,7 +100,7 @@ class IndexController extends Controller
 
         $viewData->message = "passwords do not match";
 
-        return view("result", ['viewData' => $viewData]);
+        return view("register", ['viewData' => $viewData]);
     }
 
     public function loginPost(Request $request){
