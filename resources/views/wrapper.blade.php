@@ -24,7 +24,7 @@
         <!-- Navigation -->
         <nav id="nav">
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li>
                     <a href="#">Browse category</a>
                     <ul>
@@ -35,9 +35,10 @@
                         @endforeach
                     </ul>
 
-                <li><a href="post_ad.html">Post an ad</a></li>
+
 
                 @if(Illuminate\Support\Facades\Auth::check())
+                    <li><a href="post_ad.html">Post an ad</a></li>
                     <li>
                         <a href="#">Profile</a>
                         <ul>
@@ -45,8 +46,10 @@
                             <li><a href="/logout">Log out</a></li>
                         </ul>
                     </li>
-                @elsif
+                @else
+                    <li><a href="/register">Register</a></li>
                     <li><a href="/login">Log in</a></li>
+
                 @endif
 
 

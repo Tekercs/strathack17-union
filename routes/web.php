@@ -13,8 +13,6 @@
 
 Route::get("/", "IndexController@index");
 
-Route::get("/index", "IndexController@index");
-
 Route::post("/", "IndexController@postedMessage");
 
 Route::get("/register", "IndexController@register");
