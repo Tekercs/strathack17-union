@@ -20,4 +20,24 @@ class AdsController extends Controller
 
         return view("ads.viewdetails", ['viewData' => $viewData]);
     }
+
+    public function adList($page = 0)
+    {
+        $viewData = new \stdClass();
+        $viewData->prevPage = ($page-1 <0)? 0 : $page-1;
+        $viewData->nextPage = $page+1;
+        $viewData->ads = Ads::skip($page*9)->take(9)->get();
+
+        return view("ads.list", ['viewData' => $viewData]);
+    }
+
+    public function categoryList($categoryId, $page = 0)
+    {
+        $viewData = new \stdClass();
+        $viewData->prevPage = ($page-1 <0)? 0 : $page-1;
+        $viewData->nextPage = $page+1;
+        $viewData->ads = Ads::where("categoryId", $categoryId)->skip($page*9)->take(9)->get();
+
+        return view("ads.list", ['viewData' => $viewData]);
+    }
 }

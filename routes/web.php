@@ -25,11 +25,14 @@ Route::post("/account", "IndexController@accountPost");
 
 Route::get("/logout", "IndexController@logout");
 
+Route::get("/test", "IndexController@test");
+
 
 Route::group(['prefix' => '/ads'], function ()
 {
 
     Route::get("{id}", "AdsController@viewAd");
-
+    Route::get("/list/{page?}", "AdsController@adList");
+    Route::get("/category/{categoryId}/{page?}", "AdsController@categoryList");
 
 });

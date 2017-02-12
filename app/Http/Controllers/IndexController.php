@@ -122,4 +122,9 @@ class IndexController extends Controller
 
         return redirect("/");
     }
+
+    public function test()
+    {
+        return view("test");
+    }
 }
