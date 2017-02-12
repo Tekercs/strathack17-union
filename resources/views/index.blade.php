@@ -2,8 +2,7 @@
 
 @section('content')
     <section class="last">
-        <h2>So what's this all about?</h2>
-        <p> And here we tell people what our website does.
-        </p>
+        <h2>Main page</h2>
+        <p> Welcome to our portal we hope you are enjoy it!</p>
     </section>
 @endsection

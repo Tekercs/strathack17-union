@@ -28,7 +28,7 @@
                 <li>
                     <a href="#">Browse category</a>
                     <ul>
-                        @foreach($viewData->categories as $category)
+                        @foreach(App\Categories::all() as $category)
                             <li>
                                 <a href="/ads/category/{{$category->id}}">{{$category->name}}</a>
                             </li>
@@ -37,17 +37,18 @@
 
                 <li><a href="post_ad.html">Post an ad</a></li>
 
-                @if($viewData->isLoggedIn)
-                <li>
-                    <a href="#">Profile</a>
-                    <ul>
-                        <li><a href="#">Manage settings</a></li>
-                        <li><a href="#">Log out</a></li>
-                    </ul>
-                </li>
+                @if(Illuminate\Support\Facades\Auth::check())
+                    <li>
+                        <a href="#">Profile</a>
+                        <ul>
+                            <li><a href="/account">Manage settings</a></li>
+                            <li><a href="/logout">Log out</a></li>
+                        </ul>
+                    </li>
                 @elsif
-                <li><a href="/login">Log in</a></li>
+                    <li><a href="/login">Log in</a></li>
                 @endif
+
 
 
                 <li id="search">
@@ -64,7 +65,7 @@
         <div id="features-wrapper">
             <div class="container">
                 <div class="row">
-                @foreach($viewData->adSelection as $ad)
+                @foreach(App\Ads::orderBy("created_at")->take(3)->get() as $ad)
                     <div class="4u 12u(medium)">
                         <section class="box feature">
                             <a href="ad_view" class="image featured"><img src="images/pic01.jpg" alt="" /></a>

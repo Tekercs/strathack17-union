@@ -22,9 +22,7 @@ class IndexController extends Controller
     public function index()
     {
         $viewData = new \stdClass();
-        $viewData->adSelection = Ads::orderBy("created_at")->take(3)->get();
         $viewData->isIndex = true;
-        $viewData->isLoggedIn = Auth::check();
         $viewData->categories = Categories::all();
         if (Auth::check())
         {
@@ -126,5 +124,12 @@ class IndexController extends Controller
         $viewData->ad = Ads::find($id);
 
         return view("addetails", ['viewData' => $viewData]);
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect("/");
     }
 }
