@@ -92,13 +92,11 @@ class IndexController extends Controller
         $viewData = new \stdClass();
         if ($request->input("cpassword") == $request->input("password")){
             $user->save();
-            $viewData->message = 'successful';
-        }else{
-            $viewData->message = "passwords do not match";
+            return redirect("/");
         }
 
 
-
+        $viewData->message = "passwords do not match";
 
         return view("result", ['viewData' => $viewData]);
     }
