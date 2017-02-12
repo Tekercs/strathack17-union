@@ -39,7 +39,7 @@ class AdsController extends Controller
         $viewData = new \stdClass();
         $viewData->prevPage = ($page-1 <0)? 0 : $page-1;
         $viewData->nextPage = $page+1;
-        $viewData->ads = Ads::where("categoryId", $categoryId)->skip($page*9)->take(9)->get();
+        $viewData->ads = Ads::where("categoryId", $categoryId)->orderBy("created_at", "desc")->skip($page*9)->take(9)->get();
 
         return view("ads.list", ['viewData' => $viewData]);
     }
@@ -57,6 +57,7 @@ class AdsController extends Controller
         $viewData->prevPage = ($page-1 <0)? 0 : $page-1;
         $viewData->nextPage = $page+1;
         $viewData->ads = Ads::search($key)
+            ->orderBy("created_at", "desc")
             ->skip($page*9)
             ->take(9)
             ->get();
@@ -82,6 +83,21 @@ class AdsController extends Controller
         $ad->breef =  $request->input("brief");
         $ad->content =  $request->input("desc");
         $ad->categoryId =  $request->input("category");
+
+
+        return var_dump($request->input("adPictures"));
+
+        foreach ($request->input("adPictures") as $picture)
+        {
+            $fileName = $picture->getClientOriginalName();
+            $picture->move(public_path() . "/images/", $fileName);
+
+            if($ad->pictureList == "")
+                $ad->pictureList = $fileName;
+            else
+                $ad->pictureList .= (";" . $fileName);
+        }
+
 
         $ad->save();
 

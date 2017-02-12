@@ -88,7 +88,7 @@
         <div id="features-wrapper">
             <div class="container">
                 <div class="row">
-                @foreach(App\Ads::orderBy("created_at")->take(3)->get() as $ad)
+                @foreach(App\Ads::orderBy("created_at", "desc")->take(3)->get() as $ad)
                     <div class="4u 12u(medium)">
                         <section class="box feature">
                             <a href="ad_view" class="image featured"><img src="images/{{explode(";", $ad->pictureList)[0]}}" alt="" /></a>

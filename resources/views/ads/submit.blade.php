@@ -5,7 +5,7 @@
         {{$viewData->message}}
     @endif
     <h2>Submit an Ad</h2>
-    <form method="post" id="submitanad">
+    <form method="post" id="submitanad" enctype="multipart/form-data">
         Title:<br>
         <input type="text" id="textbox" name="title" maxlength="80" placeholder="abc123"><br>
         Category:<br>
@@ -21,6 +21,8 @@
         Description:<br>
         <textarea name="desc" form="submitanad" placeholder="Full description of your advert"></textarea></br>
 
+        Pictures:<br>
+        <input type="file" name="adPictures[]" multiple>
         {{ csrf_field() }}
         <input type="submit" value="Submit">
 
