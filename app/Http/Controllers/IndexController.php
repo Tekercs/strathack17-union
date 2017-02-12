@@ -118,14 +118,6 @@ class IndexController extends Controller
 
     }
 
-    public function viewAd($id)
-    {
-        $viewData = new \stdClass();
-        $viewData->ad = Ads::find($id);
-
-        return view("addetails", ['viewData' => $viewData]);
-    }
-
     public function logout()
     {
         Auth::logout();
