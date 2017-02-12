@@ -28,11 +28,6 @@ class CreateNewsTable extends Migration
             $table->integer('price');
             $table->integer('categoryId');
             $table->timestamps();
-
-            $table->foreign('categoryId')
-                ->references('id')
-                ->on('categories')
-                ->onDelete('cascade');
         });
     }
 

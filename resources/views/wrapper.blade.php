@@ -16,7 +16,7 @@
 
             <!-- Logo -->
             <div id="logo">
-                <h1><a href="index"> <img src="/images/logo.png"> </a></h1>
+                <h1><a href="/index"> <img src="/images/logo.png"> </a></h1>
                 <span>University of Strathclyde Students' Association</span>
             </div>
         </header>
