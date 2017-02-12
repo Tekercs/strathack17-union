@@ -85,22 +85,19 @@ class AdsController extends Controller
         $ad->categoryId =  $request->input("category");
 
 
-        return var_dump($request->input("adPictures"));
-
-        foreach ($request->input("adPictures") as $picture)
-        {
-            $fileName = $picture->getClientOriginalName();
-            $picture->move(public_path() . "/images/", $fileName);
-
-            if($ad->pictureList == "")
-                $ad->pictureList = $fileName;
-            else
-                $ad->pictureList .= (";" . $fileName);
-        }
+//        foreach ($request->input("adPictures") as $picture)
+//        {
+//            $fileName = $picture->getClientOriginalName();
+//            $picture->move(public_path() . "/images/", $fileName);
+//
+//            if($ad->pictureList == "")
+//                $ad->pictureList = $fileName;
+//            else
+//                $ad->pictureList .= (";" . $fileName);
+//        }
 
 
         $ad->save();
-
 
         return redirect("/ads/" . $ad->id);
     }
