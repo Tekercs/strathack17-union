@@ -10,7 +10,9 @@ namespace App\Http\Controllers;
 
 
 use App\Ads;
+use App\Categories;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdsController extends Controller
 {
@@ -60,5 +62,30 @@ class AdsController extends Controller
             ->get();
 
         return view("ads.list", ['viewData' => $viewData]);
+    }
+
+    public function submitAd()
+    {
+        if (!Auth::check()) {
+            return redirect('login');
+        }
+        $viewData = new \stdClass();
+        $viewData->categories = Categories::all();
+
+        return view("ads.submit", ['viewData' => $viewData]);
+    }
+
+    public function submitAdPost(Request $request){
+        $ad = new Ads();
+        $ad->title = $request->input("title");
+        $ad->price = $request->input("price");
+        $ad->breef =  $request->input("brief");
+        $ad->content =  $request->input("desc");
+        $ad->categoryId =  $request->input("category");
+
+        $ad->save();
+
+
+        return redirect("/ads/" . $ad->id);
     }
 }

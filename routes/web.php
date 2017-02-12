@@ -26,12 +26,14 @@ Route::post("/account", "IndexController@accountPost");
 Route::get("/logout", "IndexController@logout");
 
 Route::get("/test", "IndexController@test");
-Route::get("/submitAd", "IndexController@submitAd");
-Route::post("/submitAd", "IndexController@submitAdPost");
+
 
 
 Route::group(['prefix' => '/ads'], function ()
 {
+
+    Route::get("/submit", "AdsController@submitAd");
+    Route::post("/submit", "AdsController@submitAdPost");
 
     Route::get("{id}", "AdsController@viewAd");
     Route::get("/list/{page?}", "AdsController@adList");
