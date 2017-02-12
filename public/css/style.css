@@ -17,3 +17,8 @@
     text-align: right;
     box-sizing: border-box;
 }
+
+.no-background
+{
+    background: none !important;
+}
