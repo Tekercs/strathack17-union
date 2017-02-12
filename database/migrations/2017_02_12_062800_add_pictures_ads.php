@@ -13,7 +13,7 @@ class AddPicturesAds extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table)
+        Schema::table('ads', function (Blueprint $table)
         {
             $table->string('pictureList', 300)->nullable();
         });
@@ -26,7 +26,7 @@ class AddPicturesAds extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table)
+        Schema::table('ads', function (Blueprint $table)
         {
             $table->dropColumn('pictureList');
         });

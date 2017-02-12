@@ -74,7 +74,7 @@
                 @foreach(App\Ads::orderBy("created_at")->take(3)->get() as $ad)
                     <div class="4u 12u(medium)">
                         <section class="box feature">
-                            <a href="ad_view" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
+                            <a href="ad_view" class="image featured"><img src="images/{{explode(";", $ad->pictureList)[0]}}" alt="" /></a>
                             <div class="inner">
                                 <header>
                                     <h2><a href="/ads/{{$ad->id}}">{{$ad->title}}</a></h2>
