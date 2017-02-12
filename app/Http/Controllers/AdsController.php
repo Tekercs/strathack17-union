@@ -84,7 +84,7 @@ class AdsController extends Controller
         $ad->content =  $request->input("desc");
         $ad->categoryId =  $request->input("category");
 
-
+        
 //        foreach ($request->input("adPictures") as $picture)
 //        {
 //            $fileName = $picture->getClientOriginalName();
