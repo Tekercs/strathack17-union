@@ -1,1 +1,0 @@
-<h3>Strathhack 2017 - Team : "Segmentation Fault"</h3>
