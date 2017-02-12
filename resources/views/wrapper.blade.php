@@ -39,7 +39,7 @@
 
 
                 @if(Illuminate\Support\Facades\Auth::check())
-                    <li><a href="post_ad.html">Post an ad</a></li>
+                    <li><a href="submitAd">Post an ad</a></li>
                     <li>
                         <a href="#">Profile</a>
                         <ul>

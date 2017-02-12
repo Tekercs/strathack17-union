@@ -46,7 +46,7 @@
 
                         </div>
 
-        <h2>{{$viewData->ad->title}}</h2>
+        <h2>{{$viewData->ad->title}} - £{{$viewData->ad->price}}</h2>
         <i>{{$viewData->ad->created_at}}</i>
 
         <p class="bold">{{$viewData->ad->breef}}</p>

@@ -39,6 +39,17 @@ class IndexController extends Controller
         }
         return view("register");
     }
+    public function submitAd()
+    {
+        if (!Auth::check()) {
+            return redirect('login');
+        }
+        $viewData = new \stdClass();
+        $viewData->categories = Categories::all();
+
+        return view("submitAd", ['viewData' => $viewData]);
+    }
+
 
     public function login()
     {
@@ -100,7 +111,19 @@ class IndexController extends Controller
 
         return view("result", ['viewData' => $viewData]);
     }
+    public function submitAdPost(Request $request){
+        $ad = new Ads();
+        $ad->title = $request->input("title");
+        $ad->price = $request->input("price");
+        $ad->breef =  $request->input("brief");
+        $ad->content =  $request->input("desc");
+        $ad->categoryId =  $request->input("category");
 
+        $ad->save();
+
+
+        return redirect("/ads/" . $ad->id);
+    }
     public function loginPost(Request $request){
 
         if (Auth::attempt(['email' => $request->input("email"), 'password' => $request->input("password")])) {
@@ -115,6 +138,7 @@ class IndexController extends Controller
 
 
     }
+
 
     public function logout()
     {

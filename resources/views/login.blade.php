@@ -4,6 +4,7 @@
 @if (isset($viewData->message))
     {{$viewData->message}}
 @endif
+<h2>Login</h2>
 <form method="post">
     Email:<br>
     <input type="text" id="textbox" name="email" placeholder="Strathhacker@please.fixourcode.com"><br>
